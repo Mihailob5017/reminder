@@ -11,7 +11,7 @@ const ListItemComponent = props => {
       }
     >
       <div>
-        <h1 className="head">{props.note.head}</h1>
+        <h1 className="head">{Concat(props.note.head)}</h1>
         <p className="text">{Concat(props.note.text)}</p>
       </div>
       <div>

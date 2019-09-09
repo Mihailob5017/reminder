@@ -60,6 +60,7 @@ class EditorComponent extends Component {
           <label>The header goes here</label>
           <input
             type="text"
+            maxlength="30"
             value={this.state.header}
             onChange={this.headerHandler}
           />

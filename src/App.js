@@ -65,6 +65,8 @@ class App extends React.Component {
   }
   //opens a window for editing notes and passes the values of the note being edited
   async editNote(note) {
+    //if the element is already open, it will firsty close it and open it again
+    if (this.state.isLoaded) await this.setState({ isLoaded: false });
     await this.setState({
       componentBeingEdited: note,
       isBeingEdited: true,
