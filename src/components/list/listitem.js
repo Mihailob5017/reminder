@@ -1,6 +1,7 @@
 import React from "react";
 import { FaPen, FaTrash, FaEye } from "react-icons/fa";
 import Concat from "../helpers/concat";
+//a single Note Component
 const ListItemComponent = props => {
   return (
     <div
@@ -14,7 +15,11 @@ const ListItemComponent = props => {
         <p className="text">{Concat(props.note.text)}</p>
       </div>
       <div>
-        <FaEye onClick={()=>{props.viewComponent(props.note)}}/>
+        <FaEye
+          onClick={() => {
+            props.viewComponent(props.note);
+          }}
+        />
         <FaPen
           onClick={() => {
             props.editNote(props.note);

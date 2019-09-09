@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-
+//Editor Component,used for addin and editing selected Components
 class EditorComponent extends Component {
-  //will need at least three props
-  //isBeingEdited and if true
-  //componentBeingEdited
-  //a funtrion to pass up so it can change the parent state back to false
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +8,8 @@ class EditorComponent extends Component {
       text: "",
       isImportant: false
     };
-
+    //checks if the component is being edited or the user is creating a new component
+    //If it is being edited it loads the values of the selected component on to the state
     this.componentDidMount = () => {
       if (this.props.isBeingEdited === true) {
         this.setState({
@@ -32,7 +29,9 @@ class EditorComponent extends Component {
   textHandler = text => {
     this.setState({ text: text.target.value });
   };
+
   sumbit = () => {
+    //if the component is being edited,it will send the object with the original id
     if (
       this.props.isBeingEdited &&
       (this.state.header !== "" && this.state.text !== "")
@@ -44,6 +43,7 @@ class EditorComponent extends Component {
         isImportant: this.state.isImportant
       };
       this.props.updateNote(newObj);
+      //if the component is not being edited, it will send the object without the id
     } else if (this.state.header !== "" && this.state.text !== "") {
       const obj = {
         head: this.state.header,

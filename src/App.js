@@ -22,41 +22,48 @@ class App extends React.Component {
     this.editNote = this.editNote.bind(this);
     this.viewComponent = this.viewComponent.bind(this);
   }
+
   //deleting notes from the array and firebase
   async deleteNote(note) {
     if (window.confirm(`are you sure u want to delete ${note.head}`)) {
       const newNotes = this.state.notes;
       newNotes.splice(newNotes.indexOf(note), 1);
-      if(note===this.state.componentBeingViewed)
-      {
-        await this.setState({isBeingViewed:false})
+      //if the user click on delete and the component is open for viewing or editing, it will automaticly close the editor and viewer
+      if (
+        note === this.state.componentBeingViewed ||
+        note === this.state.componentBeingEdited
+      ) {
+        await this.setState({ isBeingViewed: false, isLoaded: false });
       }
-      await this.setState({ notes: newNotes });
-      //firebase code
+      //deleteing the note from firebase
+      await firebase
+        .firestore()
+        .collection("notes")
+        .doc(note.id)
+        .delete();
     }
   }
-  //loading a selected component
+  //when the user click on the eye icon,it will open the window for viewing
   async viewComponent(note) {
     await this.setState({ componentBeingViewed: note, isBeingViewed: true });
   }
   //adding a note to the array and firebase
   async updateNote(note) {
+    //if the note is being edited ,it will edit it by firstly deleting it and adding a new note with the edited values
     if (this.state.isBeingEdited) {
-      let notes = this.state.notes;
-      notes = notes.filter(__note => {
-        return __note.id !== note.id;
-      });
-      notes.push(note);
-      await this.setState({ notes: notes });
-    } else {
-      let notes = this.state.notes;
-      notes.push(note);
-      await this.setState({ notes: notes });
+      await firebase
+        .firestore()
+        .collection("notes")
+        .doc(note.id)
+        .delete();
     }
     this.setState({ isLoaded: false });
-    //firebase code
+    await firebase
+      .firestore()
+      .collection("notes")
+      .add(note);
   }
-  //editing a selected note
+  //opens a window for editing notes and passes the values of the note being edited
   async editNote(note) {
     await this.setState({
       componentBeingEdited: note,
@@ -64,17 +71,8 @@ class App extends React.Component {
       isLoaded: true
     });
   }
-
   render() {
     const notes = this.state.notes;
-
-    
-
-    //ovo mora biti responisve
-    //treba povezati nove notove sa "Firebaseom"
-    //svaka komponenta se sklanja kada se ne koristi vise
-    //treba dodati animacije
-    //treba napraviti novi css
     return (
       <div>
         <ListComponent

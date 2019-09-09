@@ -1,6 +1,7 @@
 import React from "react";
 import ListItemComponent from "./listitem";
-const ListComponent = ({ notes, editNote, deleteNote,viewComponent }) => {
+//List Component
+const ListComponent = ({ notes, editNote, deleteNote, viewComponent }) => {
   return (
     <div className="note-container">
       {notes.map(note => {

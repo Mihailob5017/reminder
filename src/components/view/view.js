@@ -1,5 +1,5 @@
 import React from "react";
-
+//opens 'View Window' of the selected component
 const ViewComponent = props => {
   return (
     <div className="view-container">
