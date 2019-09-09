@@ -74,6 +74,7 @@
 .editor .textbox-area :last-child {
 	font-size: 1.5em;
 	flex-basis: 90%;
+	resize: none;
 }
 .editor .checkbox-area {
 	flex-basis: 30%;
@@ -106,4 +107,47 @@
 	color: white;
 	transform: translate(-50%);
 	width: 40%;
+}
+.view-container{
+	position: absolute;
+	top: 10%;
+	left: 30%;
+	width: 40%;
+	height: 90%;
+	border: 1px solid black;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+.view-container .header{
+	font-size: 2em;
+	justify-self: center;
+	flex-basis: 8%;
+	text-align: center;
+	background-color: lightblue;
+	color: white;
+	text-shadow: 1px 1px 1px black;
+}
+.view-container .text{
+	font-size: 1.5em;
+	background-color: lightblue;
+	color: white;
+	text-shadow: 1px 1px 1px black;
+	text-align: center;
+	flex-basis: 60%;
+}
+.view-container .important{
+	flex-basis: 20%;
+	text-align: center;
+	background-color: firebrick;
+	color: white;
+	font-size: 2.5em;
+}
+.view-container .cancel{
+	text-shadow: 1px 1px 1px black;
+	background-color: lightblue;
+	flex-basis: 10%;
+	color: white;
+	font-size: 2em;
+
 }
