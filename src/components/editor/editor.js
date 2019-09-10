@@ -31,7 +31,6 @@ class EditorComponent extends Component {
   };
 
   sumbit = () => {
-    //if the component is being edited,it will send the object with the original id
     if (
       this.props.isBeingEdited &&
       (this.state.header !== "" && this.state.text !== "")
@@ -57,27 +56,38 @@ class EditorComponent extends Component {
     return (
       <div className="editor">
         <div className="input-area">
-          <label>The header goes here</label>
+          <label>Note Name</label>
           <input
             type="text"
-            maxlength="30"
+            placeholder="note name"
+            maxLength="30"
             value={this.state.header}
             onChange={this.headerHandler}
           />
         </div>
         <div className="textbox-area">
           <label>The main text goes here</label>
-          <textarea value={this.state.text} onChange={this.textHandler} />
+          <textarea
+            value={this.state.text}
+            placeholder="note text"
+            onChange={this.textHandler}
+          />
         </div>
         <div className="checkbox-area">
           <label>Is this important?</label>
           <input
             type="checkbox"
+            defaultChecked={this.state.isImportant}
             checked={this.state.isImportant}
             onChange={this.checkboxHander}
           />
         </div>
-        <input type="submit" onClick={this.sumbit} value="Submit" />
+        <input
+          className="submit  "
+          type="submit"
+          onClick={this.sumbit}
+          value="Submit"
+        />
       </div>
     );
   }

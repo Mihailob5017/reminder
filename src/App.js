@@ -51,6 +51,7 @@ class App extends React.Component {
   async updateNote(note) {
     //if the note is being edited ,it will edit it by firstly deleting it and adding a new note with the edited values
     if (this.state.isBeingEdited) {
+      await this.setState({ isBeingViewed: false });
       await firebase
         .firestore()
         .collection("notes")
@@ -76,7 +77,7 @@ class App extends React.Component {
   render() {
     const notes = this.state.notes;
     return (
-      <div>
+      <div className='root'>
         <ListComponent
           notes={notes}
           editNote={this.editNote}
@@ -84,21 +85,24 @@ class App extends React.Component {
           deleteNote={this.deleteNote}
           updateNote={this.updateNote}
         />
-        <button
-          className="add-element"
-          onClick={() => this.setState({ isLoaded: !this.state.isLoaded })}
-        >
-          {this.state.isLoaded ? "Cancel" : "Add new Element"}
-        </button>
-        {this.state.isLoaded ? (
-          <EditorComponent
-            isBeingEdited={this.state.isBeingEdited}
-            componentBeingEdited={this.state.componentBeingEdited}
-            updateNote={this.updateNote}
-          />
-        ) : (
-          ""
-        )}
+        <div className='middle'>
+          <button
+            className="add-element"
+            onClick={() => this.setState({ isLoaded: !this.state.isLoaded })}
+          >
+            {this.state.isLoaded ? "Cancel" : "Add new Element"}
+          </button>
+          {this.state.isLoaded ? (
+            <EditorComponent
+              isBeingEdited={this.state.isBeingEdited}
+              componentBeingEdited={this.state.componentBeingEdited}
+              updateNote={this.updateNote}
+            />
+          ) : (
+            ""
+          )}
+        </div >
+        
         {this.state.isBeingViewed ? (
           <ViewComponent
             componentBeingViewed={this.state.componentBeingViewed}
@@ -108,7 +112,7 @@ class App extends React.Component {
             }
           />
         ) : (
-          ""
+         <div className='view-proxy'></div>
         )}
       </div>
     );

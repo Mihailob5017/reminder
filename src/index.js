@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import("./style/secendary.css");
+import './style/primary.css';
 const firebase = require("firebase");
 require("firebase/firestore");
 const firebaseConfig = {
