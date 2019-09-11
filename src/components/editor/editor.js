@@ -77,7 +77,6 @@ class EditorComponent extends Component {
           <label>Is this important?</label>
           <input
             type="checkbox"
-            defaultChecked={this.state.isImportant}
             checked={this.state.isImportant}
             onChange={this.checkboxHander}
           />

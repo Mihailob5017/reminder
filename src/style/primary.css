@@ -33,7 +33,6 @@
   -ms-flex-preferred-size: 33.3%;
       flex-basis: 33.3%;
   min-width: 400px;
-  border: 1px solid black;
   overflow-y: scroll;
 }
 

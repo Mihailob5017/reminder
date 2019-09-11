@@ -22,7 +22,6 @@
     .note-container {
       flex-basis: 33.3%;
       min-width: 400px;
-      border: 1px solid black;
       overflow-y: scroll;
 
       .note {
@@ -203,7 +202,7 @@
         background-color: #eee;
         padding: 10px;
         font-size: 1.3em;
-        
+
         overflow-y: scroll;
       }
       .important {
@@ -227,14 +226,15 @@
         color: royalblue;
         font-size: 1.5em;
         text-shadow: 1px 1px 1px #bbb;
-        &:hover{
+        &:hover {
           cursor: pointer;
-          background-color:transparent;
+          background-color: transparent;
         }
       }
     }
   }
 }
+
 ::-webkit-scrollbar {
   width: 2px;
 }
